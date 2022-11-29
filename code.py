@@ -29,36 +29,36 @@ def Example(list):
                     arr2[i % 5] += 1
     return arr2
 
+# input size
 size = [1, 5, 10, 25, 50, 75, 100, 150, 200, 250]
 
-def count(list):
-    count = [0,0,0]
-    for i in list:
-        count[i] += 1
-    return count
-
+# main:
 for i in size:
     for case in ['best', 'average', 'worst']:
+        # The best case is when all the elements of the list are 0:
         if case == 'best':
             input = [0] * i
             start = time.time()
             Example(input)
             end = time.time()
             print('Case: ' + str(case) + '\tSize: ' + str(i) + '\tElapsed Time: ' + str(end - start))
+
+        # The worst case is when all the elements of the list are 2:
         elif case == 'worst':
             input = [2] * i
             start = time.time()
             Example(input)
             end = time.time()
             print('Case: ' + str(case) + '\tSize: ' + str(i) + '\tElapsed Time: ' + str(end - start))
+        
+        # The average case:
         elif case == 'average':
             totalTime = 0
+            # The algorithm is run on random input 3 times:
             for j in range(3):
-                input = [random.randint(0, 2) for i in range(i)]
+                input = [random.randint(0, 2) for t in range(i)]
                 start = time.time()
                 Example(input)
                 end = time.time()
                 totalTime  += (end - start)
             print('Case: ' + str(case) + '\tSize: ' + str(i) + '\tElapsed Time: ' + str(totalTime / 3))
-
-print(Example(list))
